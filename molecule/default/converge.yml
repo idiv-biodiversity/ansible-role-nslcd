@@ -1,0 +1,16 @@
+---
+
+- name: converge
+  hosts: all
+
+  tasks:
+    - name: include the role
+      ansible.builtin.include_role:
+        name: idiv_biodiversity.nslcd
+
+  vars:
+    nsswitch_passwd: [files, ldap]
+    nsswitch_group: [files, ldap]
+    nsswitch_shadow: [files, ldap]
+
+...

@@ -1,0 +1,35 @@
+---
+
+- name: import preflight
+  ansible.builtin.import_tasks: preflight.yml
+
+- name: install packages
+  ansible.builtin.package:
+    name: nss-pam-ldapd
+  become: yes
+
+- name: configure service
+  ansible.builtin.template:
+    src: nslcd.conf.j2
+    dest: /etc/nslcd.conf
+    owner: root
+    group: root
+    mode: 0600
+  become: yes
+  register: __nslcd_configuration
+
+- name: start/enable service
+  ansible.builtin.service:
+    name: nslcd
+    enabled: yes
+    state: >-
+      {{
+        __nslcd_configuration.changed |
+          default(False) |
+          ternary("restarted", "started")
+      }}
+  become: yes
+  tags:
+    - service
+
+...

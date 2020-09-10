@@ -1,0 +1,9 @@
+---
+
+__nslcd_vars_files:
+  files:
+    - '{{ ansible_os_family | lower }}.yml'
+  paths:
+    - vars
+
+...

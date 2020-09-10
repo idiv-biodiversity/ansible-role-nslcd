@@ -1,0 +1,12 @@
+---
+
+- name: verify that nsswitch contains ldap
+  ansible.builtin.assert:
+    that:
+      - '"ldap" in nsswitch_passwd'
+      - '"ldap" in nsswitch_group'
+      - '"ldap" in nsswitch_shadow'
+    success_msg: "'ldap' is in nsswitch"
+    fail_msg: "'ldap' is not in nsswitch"
+
+...
