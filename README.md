@@ -3,6 +3,8 @@ Ansible Role: nslcd
 
 An Ansible role that configures **nslcd**, i.e. authentication via LDAP.
 
+**Note:** PAM is not yet done with this role or through dependencies!
+
 
 Table of Contents
 -----------------
