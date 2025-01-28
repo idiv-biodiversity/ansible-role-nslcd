@@ -1,6 +1,6 @@
 ---
 
-name: molecule
+name: ansible
 
 on:
   pull_request:
@@ -10,17 +10,26 @@ on:
       - wip/next
 
 jobs:
+
+  ansible-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ansible/ansible-lint@v25
+
   molecule:
-    name: molecule
+    needs:
+      - ansible-lint
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         distro:
           - archlinux
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
       - run: pip3 install ansible molecule molecule-plugins[docker] docker
