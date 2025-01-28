@@ -2,6 +2,7 @@
 
 roles:
 
-  - src: idiv_biodiversity.nsswitch
+  - name: idiv_biodiversity.nsswitch
+    src: https://github.com/idiv-biodiversity/ansible-role-nsswitch
 
 ...
