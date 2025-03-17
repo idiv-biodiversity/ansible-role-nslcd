@@ -6,14 +6,7 @@
   pre_tasks:
 
     - name: update package cache
-      ansible.builtin.package:
-        update_cache: yes
-      become: yes
-      changed_when: no
-      register: __update_package_cache
-      until: __update_package_cache is success
-      retries: 10
-      delay: 2
+      ansible.builtin.import_tasks: ../tasks/package-cache.yml
 
   tasks:
 

@@ -1,5 +1,9 @@
 ---
 
+collections:
+
+  - name: community.general
+
 roles:
 
   - name: idiv_biodiversity.nsswitch
