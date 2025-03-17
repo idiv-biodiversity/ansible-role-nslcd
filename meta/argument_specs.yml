@@ -1,0 +1,26 @@
+---
+
+argument_specs:
+  main:
+    options:
+
+      nslcd_uris:
+        type: list
+        elements: str
+
+      nslcd_base:
+        type: str
+
+      nslcd_group_base:
+        type: str
+
+      nslcd_user_base:
+        type: str
+
+      nslcd_user_filter:
+        type: str
+
+      nslcd_min_uid:
+        type: int
+
+...
