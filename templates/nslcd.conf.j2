@@ -163,9 +163,7 @@ filter  passwd {{ nslcd_user_filter }}
 #filter group  (objectClass=aixAccessGroup)
 #map    group  cn               groupName
 #map    group  gidNumber        gid
-
 {% if nslcd_min_uid is defined %}
+
 nss_min_uid {{ nslcd_min_uid }}
-{% else %}
-nss_min_uid 1000
 {% endif %}
