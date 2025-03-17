@@ -9,17 +9,22 @@ driver:
 platforms:
 
   - name: archlinux
-    image: carlodepieri/docker-archlinux-ansible:latest
-    command: ${MOLECULE_DOCKER_COMMAND:-""}
-    privileged: yes
+    image: ghcr.io/idiv-biodiversity/ansible-molecule-archlinux:latest
+    command: /usr/lib/systemd/systemd
     pre_build_image: yes
+    privileged: yes
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    groups:
+      - nosudo
 
 provisioner:
   name: ansible
   inventory:
-    host_vars:
-      archlinux:
-        ansible_user: ansible
+    group_vars:
+      nosudo:
+        ansible_become_method: su
 
 verifier:
   name: ansible
