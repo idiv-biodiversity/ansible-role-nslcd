@@ -14,7 +14,7 @@
     dest: /etc/nslcd.conf
     owner: root
     group: root
-    mode: '0600'
+    mode: '0644'
   become: yes
   register: __nslcd_configuration
 
