@@ -62,29 +62,27 @@ you need something, feel free to contribute!
 Dependencies
 ------------
 
-- [idiv_biodiversity.nsswitch][]
-
-Example Playbook
-----------------
-
-Add to `requirements.yml`:
-
 ```yml
 ---
 
+# requirements.yml
+
 roles:
 
-  - src: idiv_biodiversity.nsswitch
-  - src: idiv_biodiversity.nslcd
+  - name: idiv_biodiversity.nsswitch
+    src: https://github.com/idiv-biodiversity/ansible-role-nsswitch
+    version: vX.Y.Z
+
+  - name: idiv_biodiversity.nslcd
+    src: https://github.com/idiv-biodiversity/ansible-role-nslcd
+    version: vX.Y.Z
 
 ...
 ```
 
-Download:
 
-```console
-$ ansible-galaxy role install -r requirements.yml
-```
+Example Playbook
+----------------
 
 ### Top-Level Playbook
 
@@ -93,8 +91,8 @@ Write a top-level playbook:
 ```yml
 ---
 
-- name: head server
-  hosts: head
+- name: server
+  hosts: group
 
   roles:
     - role: idiv_biodiversity.nslcd
